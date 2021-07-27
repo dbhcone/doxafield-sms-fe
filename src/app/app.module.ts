@@ -48,11 +48,13 @@ import { HrComponent } from './components/home/hr/hr.component';
 import { FinanceComponent } from './components/home/finance/finance.component';
 import { AdminLayoutComponent } from './components/shared/admin-layout/admin-layout.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { SettingsComponent } from './components/home/settings/settings.component';
+import { AcademicsComponent } from './components/home/academics/academics.component';
 // Material End
 // Angular Material Modules End
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, MainLayoutComponent, HomeDashboardComponent, HrComponent, FinanceComponent, AdminLayoutComponent, AdminDashboardComponent],
+  declarations: [AppComponent, LoginComponent, MainLayoutComponent, HomeDashboardComponent, HrComponent, FinanceComponent, AdminLayoutComponent, AdminDashboardComponent, SettingsComponent, AcademicsComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,

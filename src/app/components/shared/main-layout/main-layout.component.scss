@@ -26,9 +26,18 @@ mat-sidenav {
   background-color: #ffffff;
 }
 
+mat-nav-list  a {
+  text-transform: uppercase;
+}
+
 .bottom {
   display: flex;
   flex-direction: column;
   position: fixed;
   bottom: 0;
+}
+
+.doxafield-logo {
+  width: 120px;
+  max-width: 150px;
 }
