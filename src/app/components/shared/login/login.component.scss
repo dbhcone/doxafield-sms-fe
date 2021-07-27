@@ -1,0 +1,19 @@
+mat-card-title,
+mat-card-subtitle {
+  display: flex;
+  justify-content: center;
+}
+
+mat-form-field {
+    display: block;
+}
+
+mat-radio-button {
+    margin-right: 15px;
+}
+
+.login-container {
+    padding: 15px;
+    border: 1px solid #feaddd;
+    max-width: 400px;
+}
