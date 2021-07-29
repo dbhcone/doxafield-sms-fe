@@ -29,7 +29,7 @@ export class HrComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
     console.log('Destroyed')
   }
 

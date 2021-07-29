@@ -52,11 +52,12 @@ import { SettingsComponent } from './components/home/settings/settings.component
 import { AcademicsComponent } from './components/home/academics/academics.component';
 import { EmployeesComponent } from './components/home/hr/employees/employees.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { StudentsComponent } from './components/home/students/students.component';
 // Material End
 // Angular Material Modules End
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, MainLayoutComponent, HomeDashboardComponent, HrComponent, FinanceComponent, AdminLayoutComponent, AdminDashboardComponent, SettingsComponent, AcademicsComponent, EmployeesComponent],
+  declarations: [AppComponent, LoginComponent, MainLayoutComponent, HomeDashboardComponent, HrComponent, FinanceComponent, AdminLayoutComponent, AdminDashboardComponent, SettingsComponent, AcademicsComponent, EmployeesComponent, StudentsComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
