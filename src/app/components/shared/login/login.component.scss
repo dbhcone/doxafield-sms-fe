@@ -12,8 +12,29 @@ mat-radio-button {
     margin-right: 15px;
 }
 
+mat-card {
+    width: 100%;
+}
+
 .login-container {
     padding: 15px;
     border: 1px solid #feaddd;
-    max-width: 400px;
+    width: 450px;
+    display: flex;
+}
+
+.login-wrapper{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-type-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
 }
