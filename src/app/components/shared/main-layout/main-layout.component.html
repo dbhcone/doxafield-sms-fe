@@ -7,7 +7,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar style="background-color: rgb(36, 30, 30);">
+    <mat-toolbar style="background-color: rgb(36, 30, 30)">
       <!-- Menu -->
       <a routerLink="/">
         <img
@@ -19,6 +19,7 @@
       </a>
     </mat-toolbar>
     <mat-nav-list>
+      <mat-divider class="divider"></mat-divider>
       <a mat-list-item routerLink="dashboard"
         ><mat-icon>dashboard</mat-icon> Dashboard</a
       >
@@ -41,6 +42,7 @@
         <a mat-list-item routerLink="settings"
           ><mat-icon>settings</mat-icon> Settings</a
         >
+        <mat-divider class="divider"></mat-divider>
         <a mat-list-item routerLink="/logout"
           ><mat-icon>logout</mat-icon> Logout</a
         >
@@ -58,7 +60,18 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Daystar Academy School</span>
+      <!-- <span>Daystar Academy School</span> -->
+      <!-- Add two rows to this toolbar -->
+      <mat-toolbar-row>
+        <span>DAYSTAR ACADEMY SCHOOL</span>
+      </mat-toolbar-row>
+
+      <!-- TODO: Use ng store to auto change this title -->
+      <mat-toolbar-row>
+        <span>The Title of This Tab Goes Here</span>
+      </mat-toolbar-row>
+
+      <!-- End of two rows -->
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

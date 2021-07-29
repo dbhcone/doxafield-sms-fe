@@ -33,8 +33,9 @@ mat-nav-list  a {
 .bottom {
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: absolute;
   bottom: 0;
+  width: 100%;
 }
 
 .doxafield-logo {

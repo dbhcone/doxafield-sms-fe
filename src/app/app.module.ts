@@ -22,7 +22,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -50,11 +50,13 @@ import { AdminLayoutComponent } from './components/shared/admin-layout/admin-lay
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { SettingsComponent } from './components/home/settings/settings.component';
 import { AcademicsComponent } from './components/home/academics/academics.component';
+import { EmployeesComponent } from './components/home/hr/employees/employees.component';
+import { MatDialogModule } from '@angular/material/dialog';
 // Material End
 // Angular Material Modules End
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, MainLayoutComponent, HomeDashboardComponent, HrComponent, FinanceComponent, AdminLayoutComponent, AdminDashboardComponent, SettingsComponent, AcademicsComponent],
+  declarations: [AppComponent, LoginComponent, MainLayoutComponent, HomeDashboardComponent, HrComponent, FinanceComponent, AdminLayoutComponent, AdminDashboardComponent, SettingsComponent, AcademicsComponent, EmployeesComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
@@ -96,6 +98,8 @@ import { AcademicsComponent } from './components/home/academics/academics.compon
     MatDatepickerModule,
     MatTooltipModule,
     LayoutModule,
+    MatDialogModule,
+    MatNativeDateModule
     // Angular Material Imports End
   ],
   providers: [],
