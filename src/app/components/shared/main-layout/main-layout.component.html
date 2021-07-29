@@ -20,8 +20,8 @@
     </mat-toolbar>
     <!-- #region Side nav list (main) -->
     <mat-nav-list>
-      <a *ngFor="let nav of navs" mat-list-item [routerLink]="nav.route"
-        ><mat-icon>{{nav.icon}}</mat-icon> {{ nav.name | uppercase}}</a
+      <a *ngFor="let nav of navs" mat-list-item [routerLink]="nav.route" (click)="updateNavTitle(nav.name)"
+        ><mat-icon>{{ nav.icon }}</mat-icon> {{ nav.name | uppercase }}</a
       >
 
       <mat-divider class="divider"></mat-divider>
@@ -47,7 +47,6 @@
           </mat-expansion-panel-header>
         </mat-expansion-panel>
       </mat-accordion> -->
-
     </mat-nav-list>
     <!-- #endregion -->
 
@@ -85,7 +84,7 @@
 
       <!-- TODO: Use ng store to auto change this title -->
       <mat-toolbar-row>
-        <span>The Title of This Tab Goes Here</span>
+        <span *ngIf="navStore">{{(navStore | async)?.title }}</span>
       </mat-toolbar-row>
 
       <!-- #endregion -->

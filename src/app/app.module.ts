@@ -53,6 +53,9 @@ import { AcademicsComponent } from './components/home/academics/academics.compon
 import { EmployeesComponent } from './components/home/hr/employees/employees.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { StudentsComponent } from './components/home/students/students.component';
+
+import { StoreModule } from '@ngrx/store';
+import { navReducer } from './store/reducers/nav.reducers';
 // Material End
 // Angular Material Modules End
 
@@ -100,8 +103,9 @@ import { StudentsComponent } from './components/home/students/students.component
     MatTooltipModule,
     LayoutModule,
     MatDialogModule,
-    MatNativeDateModule
+    MatNativeDateModule,
     // Angular Material Imports End
+    StoreModule.forRoot({obj: navReducer})
   ],
   providers: [],
   bootstrap: [AppComponent],

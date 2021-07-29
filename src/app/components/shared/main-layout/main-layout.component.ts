@@ -3,6 +3,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatAccordion } from '@angular/material/expansion';
+import { updateTitle } from 'src/app/store/actions/nav.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-main-layout',
@@ -12,6 +15,8 @@ import { MatAccordion } from '@angular/material/expansion';
 export class MainLayoutComponent {
   navs: INavigations[] = [];
 
+  navStore: Observable<{title: string}>;
+
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -19,7 +24,7 @@ export class MainLayoutComponent {
       shareReplay()
     );
   @ViewChild(MatAccordion) accordion?: MatAccordion;
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(private breakpointObserver: BreakpointObserver, private store: Store<AppState>) {
     this.navs = [
       { name: 'Dashboard', route: 'dashboard', icon: 'dashboard' },
       { name: 'Academics', route: 'academics', icon: 'school' },
@@ -27,6 +32,11 @@ export class MainLayoutComponent {
       { name: 'Students', route: 'students', icon: 'people' },
       { name: 'Hr', route: 'hr', icon: 'group' },
     ];
+    this.navStore = store.select("obj");
+  }
+
+  updateNavTitle (title: string) {
+    this.store.dispatch(updateTitle({title}));
   }
 }
 
