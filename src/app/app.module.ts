@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/shared/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // Angular Material Modules Start
 // Material Start
@@ -60,7 +61,20 @@ import { navReducer } from './store/reducers/nav.reducers';
 // Angular Material Modules End
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, MainLayoutComponent, HomeDashboardComponent, HrComponent, FinanceComponent, AdminLayoutComponent, AdminDashboardComponent, SettingsComponent, AcademicsComponent, EmployeesComponent, StudentsComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    MainLayoutComponent,
+    HomeDashboardComponent,
+    HrComponent,
+    FinanceComponent,
+    AdminLayoutComponent,
+    AdminDashboardComponent,
+    SettingsComponent,
+    AcademicsComponent,
+    EmployeesComponent,
+    StudentsComponent,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
@@ -68,6 +82,7 @@ import { navReducer } from './store/reducers/nav.reducers';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     // Angular Material Imports Start
     MatButtonModule,
     CdkTreeModule,
@@ -105,7 +120,7 @@ import { navReducer } from './store/reducers/nav.reducers';
     MatDialogModule,
     MatNativeDateModule,
     // Angular Material Imports End
-    StoreModule.forRoot({obj: navReducer})
+    StoreModule.forRoot({ obj: navReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

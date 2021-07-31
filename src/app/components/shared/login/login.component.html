@@ -20,6 +20,21 @@
               >
             </mat-form-field>
 
+            <mat-form-field *ngIf="type?.value == 'admin' " appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                type="email"
+                matInput
+                formControlName="email"
+                placeholder="enter email here"
+                required
+              />
+              <mat-error
+                *ngIf="email?.touched && !email?.valid"
+                >Provide a valid email</mat-error
+              >
+            </mat-form-field>
+
             <mat-form-field appearance="outline">
               <mat-label>Password</mat-label>
               <input
@@ -39,6 +54,7 @@
             <mat-radio-group
               formControlName="type"
               aria-label="Select an option"
+              (change)="typeRadioChange($event)"
             >
               <mat-radio-button id="01" value="admin">Admin</mat-radio-button>
               <mat-radio-button id="02" value="staff">Staff</mat-radio-button>
