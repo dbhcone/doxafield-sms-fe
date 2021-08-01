@@ -12,6 +12,7 @@ import { LoginComponent } from './components/shared/login/login.component';
 import { MainLayoutComponent } from './components/shared/main-layout/main-layout.component';
 
 const routes: Routes = [
+  {path: "", pathMatch: "full", redirectTo: "login"},
   { path: 'login', component: LoginComponent },
   { path: 'logout', redirectTo: 'login' },
   // #region main layout section 
