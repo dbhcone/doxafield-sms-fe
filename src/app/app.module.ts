@@ -54,9 +54,14 @@ import { AcademicsComponent } from './components/home/academics/academics.compon
 import { EmployeesComponent } from './components/home/hr/employees/employees.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { StudentsComponent } from './components/home/students/students.component';
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 import { StoreModule } from '@ngrx/store';
 import { navReducer } from './store/reducers/nav.reducers';
+import { AdmissionsComponent } from './components/home/admissions/admissions.component';
+import { AddAdmissionComponent } from './components/home/admissions/add-admission.component';
+import { MatTableExporterModule } from 'mat-table-exporter';
 // Material End
 // Angular Material Modules End
 
@@ -74,15 +79,19 @@ import { navReducer } from './store/reducers/nav.reducers';
     AcademicsComponent,
     EmployeesComponent,
     StudentsComponent,
+    AdmissionsComponent,
+    AddAdmissionComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
+    MatTableExporterModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatStepperModule,
     // Angular Material Imports Start
     MatButtonModule,
     CdkTreeModule,

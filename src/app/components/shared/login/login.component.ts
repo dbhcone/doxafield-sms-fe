@@ -18,7 +18,11 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -52,13 +56,13 @@ export class LoginComponent implements OnInit {
         this.auth.adminLogin({ username, password, email }).subscribe(
           async (resp: any) => {
             if (!resp.error) {
-              console.log(resp)
+              console.log(resp);
               Swal.fire({
                 title: 'Success',
                 titleText: resp.message,
                 icon: 'success',
               }).then((res) => {
-this.router.navigate(['home']);
+                this.router.navigate(['home']);
               });
             }
           },
@@ -73,12 +77,26 @@ this.router.navigate(['home']);
         break;
       case 'staff':
         this.auth.staffLogin(this.loginForm.value).subscribe((resp: any) => {
-          console.log('kiki', resp);
+          // REDIRECT HERE
+        },
+        (err: HttpErrorResponse) => {
+          Swal.fire({
+            title: 'Login Error',
+            titleText: err.error.error.message,
+            icon: 'error',
+          });
         });
         break;
       default:
         this.auth.studentLogin(this.loginForm.value).subscribe((resp: any) => {
-          console.log('kik', resp);
+          // REDIRECT HERE
+        },
+        (err: HttpErrorResponse) => {
+          Swal.fire({
+            title: 'Login Error',
+            titleText: err.error.error.message,
+            icon: 'error',
+          });
         });
         break;
     }
