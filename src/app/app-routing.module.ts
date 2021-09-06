@@ -7,27 +7,34 @@ import { HomeDashboardComponent } from './components/home/dashboard/home-dashboa
 import { FinanceComponent } from './components/home/finance/finance.component';
 import { HrComponent } from './components/home/hr/hr.component';
 import { SettingsComponent } from './components/home/settings/settings.component';
-import { StudentsComponent } from './components/home/students/students.component';
+import { PupilsComponent } from './components/home/pupils/pupils.component';
 import { AdminLayoutComponent } from './components/shared/admin-layout/admin-layout.component';
 import { LoginComponent } from './components/shared/login/login.component';
 import { MainLayoutComponent } from './components/shared/main-layout/main-layout.component';
+import { AssessmentComponent } from './components/home/assessment/assessment.component';
+import { CommunicationsComponent } from './components/home/communications/communications.component';
+import { UsersComponent } from './components/admin/users/users.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  // { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'logout', redirectTo: 'login' },
   // #region main layout section
   {
-    path: 'home',
+    path: '',
     component: MainLayoutComponent,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: 'dashboard', component: HomeDashboardComponent },
       { path: 'hr', component: HrComponent },
       { path: 'finance', component: FinanceComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'academics', component: AcademicsComponent },
-      { path: 'students', component: StudentsComponent },
+      { path: 'pupils', component: PupilsComponent },
       { path: 'admissions', component: AdmissionsComponent },
+      { path: 'assessment', component: AssessmentComponent },
+      { path: 'communications', component: CommunicationsComponent },
+      { path: 'users', component: UsersComponent },
     ],
   },
   // #endregion

@@ -28,10 +28,12 @@ export class MainLayoutComponent {
     this.navs = [
       { name: 'Dashboard', route: 'dashboard', icon: 'dashboard' },
       { name: 'Academics', route: 'academics', icon: 'school' },
-      { name: 'Finance', route: 'finance', icon: 'attach_money' },
       { name: 'Admissions', route: 'admissions', icon: 'people' },
-      { name: 'Students', route: 'students', icon: 'people' },
+      { name: 'Pupils', route: 'pupils', icon: 'groups' },
+      { name: 'Assessment', route: 'assessment', icon: 'book' },
+      { name: 'Finance', route: 'finance', icon: 'attach_money' },
       { name: 'Hr', route: 'hr', icon: 'group' },
+      { name: 'Communications', route: 'communications', icon: 'chat' },
     ];
     this.navStore = store.select("obj");
   }

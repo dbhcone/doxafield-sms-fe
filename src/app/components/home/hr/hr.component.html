@@ -1,5 +1,36 @@
-<div>
-  <button mat-fab color="primary" (click)="openEmployeeForm()" aria-label="icon button with plus sign">
-    <mat-icon>person_add</mat-icon>
-  </button>
-</div>
+<mat-tab-group animationDuration="500ms" backgroundColor="warn">
+  <mat-tab>
+      <ng-template mat-tab-label>
+          <mat-icon>staff</mat-icon>
+          Staff
+      </ng-template>
+      <!-- Staff Content Here -->
+      <div style="height: 100%;">
+        <button mat-fab color="primary" (click)="openEmployeeForm()" aria-label="icon button with plus sign">
+          <mat-icon>person_add</mat-icon>
+        </button>
+      </div>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+        <mat-icon>sms</mat-icon>
+        Departments
+    </ng-template>
+    <!-- Departments Content Here -->
+    Departments Content Here
+</mat-tab>
+
+  <mat-tab>
+      <ng-template mat-tab-label>
+          <mat-icon>sms</mat-icon>
+          Positions
+      </ng-template>
+      <!-- Positions Content Here -->
+      Positions Content Here
+  </mat-tab>
+</mat-tab-group>
+
+
+
+

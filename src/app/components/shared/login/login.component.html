@@ -1,7 +1,7 @@
 <div class="login-wrapper">
     <section class="login-container">
       <mat-card>
-        <mat-card-title>Doxafield SMS | Login</mat-card-title>
+        <mat-card-title>WELCOME | Login</mat-card-title>
         <mat-card-subtitle>Log in with your credentials</mat-card-subtitle>
         <mat-card-content>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -55,6 +55,7 @@
               formControlName="type"
               aria-label="Select an option"
               (change)="typeRadioChange($event)"
+              class="login-type-radio"
             >
               <mat-radio-button id="01" value="admin">Admin</mat-radio-button>
               <mat-radio-button id="02" value="staff">Staff</mat-radio-button>

@@ -53,15 +53,17 @@ import { SettingsComponent } from './components/home/settings/settings.component
 import { AcademicsComponent } from './components/home/academics/academics.component';
 import { EmployeesComponent } from './components/home/hr/employees/employees.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { StudentsComponent } from './components/home/students/students.component';
-import {MatStepperModule} from '@angular/material/stepper';
-
+import { PupilsComponent } from './components/home/pupils/pupils.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { StoreModule } from '@ngrx/store';
 import { navReducer } from './store/reducers/nav.reducers';
 import { AdmissionsComponent } from './components/home/admissions/admissions.component';
 import { AddAdmissionComponent } from './components/home/admissions/add-admission.component';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { CommunicationsComponent } from './components/home/communications/communications.component';
+import { UsersComponent } from './components/admin/users/users.component';
+import { AssessmentComponent } from './components/home/assessment/assessment.component';
 // Material End
 // Angular Material Modules End
 
@@ -78,9 +80,12 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     SettingsComponent,
     AcademicsComponent,
     EmployeesComponent,
-    StudentsComponent,
+    PupilsComponent,
     AdmissionsComponent,
     AddAdmissionComponent,
+    CommunicationsComponent,
+    UsersComponent,
+    AssessmentComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [

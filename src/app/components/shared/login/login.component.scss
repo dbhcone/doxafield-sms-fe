@@ -32,9 +32,10 @@ mat-card {
 }
 
 .login-type-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
     margin-bottom: 10px;
+}
+
+.login-type-radio {
+    display: flex;
+    justify-content: space-between;
 }

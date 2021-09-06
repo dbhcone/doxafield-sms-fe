@@ -1,0 +1,10 @@
+{
+    "CONN_STR_LOC": "mongodb://localhost:27017/doxafield-sms",
+    "CONNSTR": "mongodb+srv://doxafield-sms-user:b2lTAJ4iIPzR6121@cluster-doxafield-sms.zay9n.mongodb.net/doxafield-sms?retryWrites=true&w=majority",
+    "JWT_PRIVATE_KEY": "TheQuickBrownFoxJumpedOverTheLazyDogs",
+    "MAILER_EMAIL": "dev.kiki@outlook.com",
+    "MAILER_PWD": "Hell1sRe@L.dev.outlook",
+    "CALLBACK_URL": "http://localhost:7400",
+    "BE_URL": "https://hb-events.herokuapp.com",
+    "APPROOT": "http://localhost:7400"
+}
