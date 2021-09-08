@@ -1,53 +1,152 @@
 <ng-container [ngSwitch]="stepperOrientation | async">
-    <div *ngSwitchCase="'horizontal'">Make your screen smaller to see a vertical stepper</div>
-    <div *ngSwitchCase="'vertical'">Make your screen larger to see a horizontal stepper</div>
-  </ng-container>
-  
-  <mat-stepper
-    class="example-stepper"
-    [orientation]="(stepperOrientation | async)!">
-    <mat-step [stepControl]="firstFormGroup" label="Fill out your name">
-      <form [formGroup]="firstFormGroup">
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
+  <div *ngSwitchCase="'horizontal'">
+    Make your screen smaller to see a vertical stepper
+  </div>
+  <div *ngSwitchCase="'vertical'">
+    Make your screen larger to see a horizontal stepper
+  </div>
+</ng-container>
+
+<mat-stepper
+  class="example-stepper"
+  [orientation]="(stepperOrientation | async)!"
+>
+  <!-- Personal Information -->
+  <mat-step [stepControl]="personalDetailsForm" label="Personal Details">
+    <form [formGroup]="personalDetailsForm">
+      <!-- Content here -->
+      <div class="row">
+        <div class="col-md-8">
+          <mat-form-field>
+            <mat-label>Surname</mat-label>
+            <input
+              matInput
+              placeholder="Surname"
+              formControlName="surname"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input
+              matInput
+              placeholder="First name"
+              formControlName="firstName"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Other Names</mat-label>
+            <input
+              matInput
+              placeholder="Other names"
+              formControlName="otherNames"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Date of birth</mat-label>
+            <input
+              type="date"
+              matInput
+              placeholder="Date of birth"
+              formControlName="dob"
+            />
+          </mat-form-field>
+
+          <mat-radio-group
+            formControlName="gender"
+            aria-label="Select an option for gender"
+          >
+            <mat-label>Gender</mat-label>
+            <mat-radio-button id="male" value="M">Male</mat-radio-button>
+            <mat-radio-button id="female" value="F">Female</mat-radio-button>
+          </mat-radio-group>
         </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-      <form [formGroup]="secondFormGroup">
-        <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+        <div class="col-md-4">
+          <label>Upload profile photo</label>
+          <input type="file" (change)="onFileSelected($event)" />
+          <img
+            *ngIf="imageSrc"
+            [src]="imageSrc"
+            style="height: 200px; width: 200px"
+          />
         </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="thirdFormGroup" label="Fill out your phone number">
-      <form [formGroup]="thirdFormGroup">
-        <mat-form-field appearance="fill">
-          <mat-label>Phone number</mat-label>
-          <input matInput formControlName="thirdCtrl" placeholder="Ex. 12345678" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
+      </div>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Address & Background Details -->
+  <mat-step
+    [stepControl]="secondFormGroup"
+    label="Address &amp; Background Details"
+  >
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          formControlName="secondCtrl"
+          placeholder="Ex. 1 Main St, New York, NY"
+          required
+        />
+      </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
       </div>
-    </mat-step>
-  </mat-stepper>
-  
+    </form>
+  </mat-step>
+
+  <!-- School History -->
+  <mat-step [stepControl]="thirdFormGroup" label="School History">
+    <form [formGroup]="thirdFormGroup">
+      <mat-form-field>
+        <mat-label>Phone number</mat-label>
+        <input
+          matInput
+          formControlName="thirdCtrl"
+          placeholder="Ex. 12345678"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Guardian Details -->
+  <mat-step [stepControl]="fourthFormGroup" label="Guardian Details">
+    <form [formGroup]="fourthFormGroup">
+      <mat-form-field>
+        <mat-label>Phone number</mat-label>
+        <input
+          matInput
+          formControlName="fourthCtrl"
+          placeholder="Ex. 12345678"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-stepper>

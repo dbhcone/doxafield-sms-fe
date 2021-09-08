@@ -66,8 +66,9 @@ applyFilter(event: Event): void {
 
 openAddAdmissionDialog(): void {
     const dialogRef = this.dialog.open(AddAdmissionComponent, {
-        width: '500px',
+        // width: '500px',
         disableClose: true,
+        position: {top: "20px"}
     });
     this.subscription = dialogRef.afterClosed().subscribe((result) => {
         console.log('dialog closed', result);
