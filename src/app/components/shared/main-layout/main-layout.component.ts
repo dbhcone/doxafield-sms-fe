@@ -13,7 +13,7 @@ import { AppState } from 'src/app/store/app.state';
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent {
-  navs: INavigations[] = [];
+  navs: INavigation[] = [];
 
   navStore: Observable<{title: string}>;
 
@@ -32,20 +32,21 @@ export class MainLayoutComponent {
       { name: 'Pupils', route: 'pupils', icon: 'groups' },
       { name: 'Assessment', route: 'assessment', icon: 'book' },
       { name: 'Finance', route: 'finance', icon: 'attach_money' },
-      { name: 'Hr', route: 'hr', icon: 'group' },
+      { name: 'Hr', route: 'hr', icon: 'group', alt: "Human Resource" },
       { name: 'Communications', route: 'communications', icon: 'chat' },
     ];
     this.navStore = store.select("obj");
   }
 
-  updateNavTitle (title: string) {
-    this.store.dispatch(updateTitle({title}));
+  updateNavTitle (nav: INavigation) {
+    this.store.dispatch(updateTitle({ title: nav.alt || nav.name}));
   }
 }
 
-export interface INavigations {
+export interface INavigation {
   name: string;
   route: string;
   icon: string;
+  alt?: string;
   children?: { name: ''; route: ''; icon: '' }[];
 }

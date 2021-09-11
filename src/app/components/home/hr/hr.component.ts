@@ -17,7 +17,7 @@ export class HrComponent implements OnInit, OnDestroy {
   openEmployeeForm() {
   
       const dialogRef = this.dialog.open(EmployeesComponent, {
-        width: '500px',
+        // width: '500px',
         // data: {name: this.name, animal: this.animal}
         disableClose: true
       });

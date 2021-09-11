@@ -20,7 +20,11 @@
     </mat-toolbar>
     <!-- #region Side nav list (main) -->
     <mat-nav-list>
-      <a *ngFor="let nav of navs" mat-list-item [routerLink]="nav.route" (click)="updateNavTitle(nav.name)"
+      <a
+        *ngFor="let nav of navs"
+        mat-list-item
+        [routerLink]="nav.route"
+        (click)="updateNavTitle(nav)"
         ><mat-icon>{{ nav.icon }}</mat-icon> {{ nav.name | uppercase }}</a
       >
 
@@ -57,14 +61,11 @@
           ><mat-icon>settings</mat-icon> Settings</a
         >
         <mat-divider class="divider"></mat-divider>
-        <a mat-list-item routerLink="users"
-          ><mat-icon>group</mat-icon> Users</a
-        >
+        <a mat-list-item routerLink="users"><mat-icon>group</mat-icon> Users</a>
         <mat-divider class="divider"></mat-divider>
         <a mat-list-item routerLink="/logout"
           ><mat-icon>logout</mat-icon> Logout</a
         >
-      
       </mat-nav-list>
     </div>
     <!-- #endregion -->
@@ -88,8 +89,9 @@
       </mat-toolbar-row>
 
       <!-- TODO: Use ng store to auto change this title -->
-      <mat-toolbar-row>
-        <span *ngIf="navStore">{{(navStore | async)?.title }}</span>
+      <mat-toolbar-row *ngIf="(navStore | async)?.title">
+        <hr />
+        <span>{{ (navStore | async)?.title }}</span>
       </mat-toolbar-row>
 
       <!-- #endregion -->

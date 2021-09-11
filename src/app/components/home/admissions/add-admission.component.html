@@ -11,7 +11,7 @@
   class="example-stepper"
   [orientation]="(stepperOrientation | async)!"
 >
-  <!-- Personal Information -->
+  <!-- #region Personal Information -->
   <mat-step [stepControl]="personalDetailsForm" label="Personal Details">
     <form [formGroup]="personalDetailsForm">
       <!-- Content here -->
@@ -46,6 +46,15 @@
             />
           </mat-form-field>
 
+          <mat-radio-group
+            formControlName="gender"
+            aria-label="Select an option for gender"
+          >
+            <mat-label>Gender</mat-label>
+            <mat-radio-button id="male" value="M">Male</mat-radio-button>
+            <mat-radio-button id="female" value="F">Female</mat-radio-button>
+          </mat-radio-group>
+
           <mat-form-field>
             <mat-label>Date of birth</mat-label>
             <input
@@ -56,14 +65,27 @@
             />
           </mat-form-field>
 
-          <mat-radio-group
-            formControlName="gender"
-            aria-label="Select an option for gender"
-          >
-            <mat-label>Gender</mat-label>
-            <mat-radio-button id="male" value="M">Male</mat-radio-button>
-            <mat-radio-button id="female" value="F">Female</mat-radio-button>
-          </mat-radio-group>
+          <hr />
+          <mat-form-field>
+            <mat-label>Blood Group</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="blood group"
+              formControlName="bloodGroup"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Sickle Cell Status</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="sickle cell status"
+              formControlName="sickleCellStatus"
+            />
+          </mat-form-field>
+
         </div>
         <div class="col-md-4">
           <label>Upload profile photo</label>
@@ -81,8 +103,8 @@
       </div>
     </form>
   </mat-step>
-
-  <!-- Address & Background Details -->
+  <!-- #endregion -->
+  <!-- #region Address & Background Details -->
   <mat-step
     [stepControl]="secondFormGroup"
     label="Address &amp; Background Details"
@@ -103,8 +125,9 @@
       </div>
     </form>
   </mat-step>
+  <!-- #endregion -->
 
-  <!-- School History -->
+  <!-- #region School History -->
   <mat-step [stepControl]="thirdFormGroup" label="School History">
     <form [formGroup]="thirdFormGroup">
       <mat-form-field>
@@ -123,7 +146,9 @@
     </form>
   </mat-step>
 
-  <!-- Guardian Details -->
+  <!-- #endregion -->
+
+  <!--#region Guardian Details -->
   <mat-step [stepControl]="fourthFormGroup" label="Guardian Details">
     <form [formGroup]="fourthFormGroup">
       <mat-form-field>
@@ -141,12 +166,14 @@
       </div>
     </form>
   </mat-step>
+  <!-- #endregion -->
 
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <p>You are now done.</p>
     <div>
       <button mat-button matStepperPrevious>Back</button>
+      <button mat-button type="button" (click)="onSubmit()" >Submit</button>
     </div>
   </mat-step>
 </mat-stepper>

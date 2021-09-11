@@ -26,6 +26,8 @@ export class AddAdmissionComponent implements OnInit {
     otherNames: [null],
     dob: [null],
     gender: ['', Validators.required],
+    bloodGroup: [null],
+    sickleCellStatus: [null],
   });
   secondFormGroup = this.fb.group({
     secondCtrl: ['', Validators.required],
@@ -65,5 +67,12 @@ export class AddAdmissionComponent implements OnInit {
         this.imageSrc = reader.result as string;
       };
     }
+  }
+
+  onSubmit () {
+    // if (!this.personalDetailsForm.valid) {
+    //   this.personalDetailsForm.markAllAsTouched();
+    // }
+    console.log(this.personalDetailsForm.value);
   }
 }

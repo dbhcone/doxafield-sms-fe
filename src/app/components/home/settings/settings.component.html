@@ -1,1 +1,75 @@
-<p>settings works!</p>
+<section class="container">
+  <div class="row">
+    <div class="col-md-8 col-xs-12 col-sm-12">
+      <h2 class="heading-2 text-center">DETAILS OF DAYSTAR ACADEMY SCHOOL</h2>
+      <hr />
+      <form [formGroup]="schoolSettingsForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+          <mat-label>Name of school</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="schoolName"
+            placeholder="enter name of school here"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Motto</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="motto"
+            placeholder="enter the motto of school here"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Location / Address</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="location"
+            placeholder="enter location of school here"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Postal Address</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="postalAddress"
+            placeholder="enter postal address of school here"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email Address</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="emailAddress"
+            placeholder="enter email address of school here"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Telephone Number</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="contactNumber"
+            placeholder="enter contact number of school here"
+          />
+        </mat-form-field>
+
+        <div>
+          <button mat-raised-button color="accent" class="full-width" type="submit">
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
