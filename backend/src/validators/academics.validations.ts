@@ -10,8 +10,8 @@ const calendarValidation: ObjectSchema<{
 }> = Joi.object({
   year: Joi.string().required(),
   term: Joi.string().required(),
-  endDate: Joi.date().allow(null),
-  commenceDate: Joi.date().required().greater(Joi.ref('endDate')),
+  commenceDate: Joi.date().required().label('commence date').greater(Joi.ref('endDate')),
+  endDate: Joi.date().allow(null).label('end date'),
 });
 
 // Subject

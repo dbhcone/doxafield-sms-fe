@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import { AdmissionsService } from 'src/app/services/admissions.service';
 import Swal from 'sweetalert2';
 import { AddAdmissionComponent } from './add-admission.component';
 
@@ -15,12 +16,11 @@ import { AddAdmissionComponent } from './add-admission.component';
 export class AdmissionsComponent implements OnInit {
 
   displayedColumns: string[] = [
-    'username',
     'surname',
     'firstName',
     'otherNames',
     'gender',
-    'primaryMobileNumber',
+    'dob',
     'edit',
     'delete',
 ];
@@ -33,10 +33,25 @@ paginator!: MatPaginator;
 @ViewChild(MatSort)
 sort!: MatSort;
 
-constructor(private dialog: MatDialog, /* private auth: AuthService */) {
+constructor(private dialog: MatDialog, private admService: AdmissionsService ) {
     this.dataSource = new MatTableDataSource();
-    // this.fetchMembersList();
+    this.getAllAdmissions();
 }
+
+getAllAdmissions(): void {
+    this.admService.fetchAllAdmissions().subscribe((res: any) => {
+      console.log(res);
+
+      const alldata = res.data;
+      console.log('all data ', alldata);
+    //   this.dataSource.data = res.data.personalDetails;
+    this.setDataSource(alldata);
+    });
+  }
+
+  setDataSource (alldata: []) {
+    this.dataSource.data = alldata.map((dt: any) => {return dt.personalDetails})
+  }
 
 ngOnDestroy(): void {
     this.subscription?.unsubscribe();
@@ -46,15 +61,6 @@ ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
 }
 
-// fetchMembersList(): void {
-//     this.auth.getMembersList().subscribe((res: any) => {
-//         console.log(res);
-
-//         this.dataSource.data = res.data.map((member: any) => {
-//             return { username: member.username, ...member.accountOwner };
-//         });
-//     });
-// }
 applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -64,23 +70,11 @@ applyFilter(event: Event): void {
     }
 }
 
-openAddAdmissionDialog(): void {
+openAdmissionForm(data?: any): void {
     const dialogRef = this.dialog.open(AddAdmissionComponent, {
-        // width: '500px',
-        disableClose: true,
-        position: {top: "20px"}
-    });
-    this.subscription = dialogRef.afterClosed().subscribe((result) => {
-        console.log('dialog closed', result);
-        // this.fetchMembersList();
-    });
-}
-
-openEditAdmissionDialog(data: any): void {
-    const dialogRef = this.dialog.open(AddAdmissionComponent, {
-        width: '500px',
         disableClose: true,
         data,
+        position: {top: "20px"}
     });
     this.subscription = dialogRef.afterClosed().subscribe((result) => {
         console.log('dialog closed', result);

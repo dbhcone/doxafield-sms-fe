@@ -1,9 +1,12 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { StepperOrientation } from '@angular/material/stepper';
 import { map } from 'rxjs/operators';
+import { AdmissionsService } from 'src/app/services/admissions.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-admission',
@@ -14,33 +17,43 @@ export class AddAdmissionComponent implements OnInit {
   imageSrc: string | undefined;
   selectedFile: File | undefined;
 
-  personalDetailsForm = this.fb.group({
+  personalDetailsFormGroup = this.fb.group({
     surname: [
-      '',
+      null,
       Validators.compose([Validators.required, Validators.minLength(3)]),
     ],
     firstName: [
-      '',
+      null,
       Validators.compose([Validators.required, Validators.minLength(3)]),
     ],
     otherNames: [null],
     dob: [null],
-    gender: ['', Validators.required],
+    gender: [null, Validators.required],
+  });
+  addressAndBackgroundFormGroup = this.fb.group({
+    tribe: [null, Validators.required],
+    religion: [null, Validators.required],
+    address: [null, Validators.required],
+    hometown: [null, Validators.required],
+    nationality: [null, Validators.required],
+    ghPostCode: [null, Validators.required],
+  });
+  schoolHistoryFormGroup = this.fb.group({
+    lastSchoolAttended: [null, Validators.required],
+    location: [null, Validators.required],
+    reasonForLeaving: [null, Validators.required],
+    yearOfLeaving: [null, Validators.required],
+  });
+  healthDetailsFormGroup = this.fb.group({
     bloodGroup: [null],
     sickleCellStatus: [null],
-  });
-  secondFormGroup = this.fb.group({
-    secondCtrl: ['', Validators.required],
-  });
-  thirdFormGroup = this.fb.group({
-    thirdCtrl: ['', Validators.required],
-  });
-  fourthFormGroup = this.fb.group({
-    fourthCtrl: ['', Validators.required],
+    allergies: [null],
+    specialComments: [null],
   });
   stepperOrientation: Observable<StepperOrientation>;
 
-  constructor(private fb: FormBuilder, breakpointObserver: BreakpointObserver) {
+  constructor(private fb: FormBuilder, breakpointObserver: BreakpointObserver, private admService: AdmissionsService, public dialogRef: MatDialogRef<AddAdmissionComponent>,
+    @Inject(MAT_DIALOG_DATA) public data?: any) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
@@ -51,10 +64,10 @@ export class AddAdmissionComponent implements OnInit {
   onFileSelected(event: any) {
     this.selectedFile = <File>event.target.files[0];
     this.previewImage();
-    this.personalDetailsForm.patchValue({
+    this.personalDetailsFormGroup.patchValue({
       photo: this.selectedFile,
     });
-    this.personalDetailsForm.get('photo')?.updateValueAndValidity();
+    this.personalDetailsFormGroup.get('photo')?.updateValueAndValidity();
   }
   /**
    * Preview the image selected to be uploaded
@@ -70,9 +83,27 @@ export class AddAdmissionComponent implements OnInit {
   }
 
   onSubmit () {
-    // if (!this.personalDetailsForm.valid) {
-    //   this.personalDetailsForm.markAllAsTouched();
-    // }
-    console.log(this.personalDetailsForm.value);
+    const personalDetails = this.personalDetailsFormGroup.value;
+    const addressAndBackground = this.addressAndBackgroundFormGroup.value;
+    const schoolHistory = this.schoolHistoryFormGroup.value;
+    const healthDetails = this.healthDetailsFormGroup.value;
+
+    const admData = {personalDetails, addressAndBackground, schoolHistory, healthDetails};
+
+    const obs = this.data ? 
+                this.admService.updateAdmission(this.data?._id, admData) : 
+                this.admService.addAdmission(admData);
+    obs.subscribe(
+      async (resp: any) => {
+        console.log('admission', resp);
+        Swal.fire({ text: resp.message, icon: 'success', timer: 5000 });
+      },
+      (err) => {
+        Swal.fire({
+          title: `${err.error.status} - ${err.error.code}`,
+          text: `${err.error.message}`,
+        });
+      }
+    );
   }
 }

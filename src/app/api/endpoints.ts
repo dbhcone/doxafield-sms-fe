@@ -20,6 +20,12 @@ const Academics = {
   allSubjects: '/academics/subjects'
 }
 
+const Admissions = {
+  addAdmission: '/admission',
+  updateAdmission: '/admission',
+  allAdmissions: '/admissions',
+}
+
 const General = {
   contactus: '/contactus',
 };
@@ -30,4 +36,4 @@ const Events = {
   deleteOne: '/events/delete',
 };
 
-export { Auth, General, Events, Academics };
+export { Auth, General, Events, Academics, Admissions };

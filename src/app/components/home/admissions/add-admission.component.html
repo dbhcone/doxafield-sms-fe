@@ -1,6 +1,9 @@
-<h2 mat-dialog-title>SAVE ADMISSION DETAILS <span mat-dialog-close>&times;</span></h2>
+<div mat-dialog-title>
+  <h2>SAVE ADMISSION DETAILS</h2>
+  <div align="end"><span mat-dialog-close>&times;</span></div>
+</div>
 <mat-dialog-content>
-<!-- <ng-container [ngSwitch]="stepperOrientation | async">
+  <!-- <ng-container [ngSwitch]="stepperOrientation | async">
   <div *ngSwitchCase="'horizontal'">
     Make your screen smaller to see a vertical stepper
   </div>
@@ -9,181 +12,256 @@
   </div>
 </ng-container> -->
 
-<mat-stepper
-  class="example-stepper"
-  [orientation]="(stepperOrientation | async)!"
->
-  <!-- #region Personal Information -->
-  <mat-step [stepControl]="personalDetailsForm" label="Personal Details">
-    <form [formGroup]="personalDetailsForm">
-      <!-- Content here -->
-      <div class="row">
-        <div class="col-md-8">
-          <mat-form-field>
-            <mat-label>Surname</mat-label>
-            <input
-              matInput
-              placeholder="Surname"
-              formControlName="surname"
-              required
-            />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>First Name</mat-label>
-            <input
-              matInput
-              placeholder="First name"
-              formControlName="firstName"
-              required
-            />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Other Names</mat-label>
-            <input
-              matInput
-              placeholder="Other names"
-              formControlName="otherNames"
-            />
-          </mat-form-field>
-
-          <mat-radio-group
-            formControlName="gender"
-            aria-label="Select an option for gender"
-          >
-            <mat-label>Gender</mat-label>
-            <mat-radio-button id="male" value="M">Male</mat-radio-button>
-            <mat-radio-button id="female" value="F">Female</mat-radio-button>
-          </mat-radio-group>
-
-          <mat-form-field class="" appearance="outline">
-            <mat-label>Date of Birth</mat-label>
-            <input
-              matInput
-              formControlName="dob"
-              [matDatepicker]="dobPicker"
-              placeholder="mm-dd-yyyy"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="dobPicker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker touchUi #dobPicker></mat-datepicker>
-          </mat-form-field>
-
-          <hr />
-          <mat-form-field>
-            <mat-label>Blood Group</mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="blood group"
-              formControlName="bloodGroup"
-            />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Sickle Cell Status</mat-label>
-            <input
-              type="text"
-              matInput
-              placeholder="sickle cell status"
-              formControlName="sickleCellStatus"
-            />
-          </mat-form-field>
-
-        </div>
-        <div class="col-md-4">
-          <label>Upload pupil's passport-size photo</label>
-          <input type="file" (change)="onFileSelected($event)" style="display: none;" #passportphoto />
-          <button mat-raised-button color="warn" type="button" (click)="passportphoto.click()"><mat-icon matPrefix>camera</mat-icon> Upload photo</button>
-          <img
-            *ngIf="imageSrc"
-            [src]="imageSrc"
-            style="height: 200px; width: 200px"
-            class="thumbnail"
-          />
-        </div>
-      </div>
-
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <!-- #endregion -->
-  <!-- #region Address & Background Details -->
-  <mat-step
-    [stepControl]="secondFormGroup"
-    label="Address &amp; Background Details"
+  <mat-stepper
+    class="example-stepper"
+    [orientation]="(stepperOrientation | async)!"
   >
-    <form [formGroup]="secondFormGroup">
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input
-          matInput
-          formControlName="secondCtrl"
-          placeholder="Ex. 1 Main St, New York, NY"
-          required
-        />
-      </mat-form-field>
+    <!-- #region Personal Information -->
+    <mat-step [stepControl]="personalDetailsFormGroup" label="Personal Details">
+      <form [formGroup]="personalDetailsFormGroup">
+        <!-- Content here -->
+        <div class="row">
+          <div class="col-md-8">
+            <mat-form-field>
+              <mat-label>Surname</mat-label>
+              <input
+                matInput
+                placeholder="Surname"
+                formControlName="surname"
+                required
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>First Name</mat-label>
+              <input
+                matInput
+                placeholder="First name"
+                formControlName="firstName"
+                required
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Other Names</mat-label>
+              <input
+                matInput
+                placeholder="Other names"
+                formControlName="otherNames"
+              />
+            </mat-form-field>
+
+            <mat-radio-group
+              formControlName="gender"
+              aria-label="Select an option for gender"
+            >
+              <mat-label>Gender</mat-label>
+              <mat-radio-button id="male" value="M">Male</mat-radio-button>
+              <mat-radio-button id="female" value="F">Female</mat-radio-button>
+            </mat-radio-group>
+
+            <mat-form-field>
+              <mat-label>Date of Birth</mat-label>
+              <input
+                matInput
+                formControlName="dob"
+                [matDatepicker]="dobPicker"
+                placeholder="mm-dd-yyyy"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="dobPicker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker touchUi #dobPicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <label>Upload pupil's passport-size photo</label>
+            <input
+              type="file"
+              (change)="onFileSelected($event)"
+              style="display: none"
+              #passportphoto
+            />
+            <button
+              mat-raised-button
+              color="warn"
+              type="button"
+              (click)="passportphoto.click()"
+            >
+              <mat-icon matPrefix>add_a_photo</mat-icon> Upload photo
+            </button>
+            <img
+              *ngIf="imageSrc"
+              [src]="imageSrc"
+              style="height: 200px; width: 200px"
+              class="thumbnail"
+            />
+          </div>
+        </div>
+
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- #endregion -->
+    <!-- #region Address & Background Details -->
+    <mat-step
+      [stepControl]="addressAndBackgroundFormGroup"
+      label="Address &amp; Background Details"
+    >
+      <form [formGroup]="addressAndBackgroundFormGroup">
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input
+            matInput
+            formControlName="address"
+            placeholder="Ex. 1 Main St, New York, NY"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>GH Post Code</mat-label>
+          <input
+            matInput
+            formControlName="ghPostCode"
+            placeholder="NAM-888-ME"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Tribe</mat-label>
+          <input matInput formControlName="tribe" placeholder="NAM-888-ME" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Religion</mat-label>
+          <input matInput formControlName="religion" placeholder="religion" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Home Town</mat-label>
+          <input matInput formControlName="hometown" placeholder="hometown" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Nationality</mat-label>
+          <input
+            matInput
+            formControlName="nationality"
+            placeholder="nationality"
+          />
+        </mat-form-field>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- #endregion -->
+
+    <!-- #region School History -->
+    <mat-step [stepControl]="schoolHistoryFormGroup" label="School History">
+      <form [formGroup]="schoolHistoryFormGroup">
+        <mat-form-field>
+          <mat-label>Last School Attended</mat-label>
+          <input matInput formControlName="lastSchoolAttended" placeholder="" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Location</mat-label>
+          <input matInput formControlName="location" placeholder="location" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Reason for leaving</mat-label>
+          <input
+            matInput
+            formControlName="reasonForLeaving"
+            placeholder="reasonForLeaving"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Year of Leaving</mat-label>
+          <input
+            matInput
+            formControlName="yearOfLeaving"
+            placeholder="year Of Leaving"
+          />
+        </mat-form-field>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- #endregion -->
+
+    <!-- #region Health Details -->
+    <mat-step [stepControl]="healthDetailsFormGroup" label="Health Details">
+      <form [formGroup]="healthDetailsFormGroup">
+        <mat-form-field>
+          <mat-label>Blood Group</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="blood group"
+            formControlName="bloodGroup"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Sickle Cell Status</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="sickle cell status"
+            formControlName="sickleCellStatus"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Allergies</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="allergies"
+            formControlName="allergies"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Special Comments</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="special comments"
+            formControlName="specialComments"
+          />
+        </mat-form-field>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- #endregion -->
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button type="button" (click)="onSubmit()">Submit</button>
       </div>
-    </form>
-  </mat-step>
-  <!-- #endregion -->
-
-  <!-- #region School History -->
-  <mat-step [stepControl]="thirdFormGroup" label="School History">
-    <form [formGroup]="thirdFormGroup">
-      <mat-form-field>
-        <mat-label>Phone number</mat-label>
-        <input
-          matInput
-          formControlName="thirdCtrl"
-          placeholder="Ex. 12345678"
-          required
-        />
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <!-- #endregion -->
-
-  <!--#region Guardian Details -->
-  <mat-step [stepControl]="fourthFormGroup" label="Guardian Details">
-    <form [formGroup]="fourthFormGroup">
-      <mat-form-field>
-        <mat-label>Phone number</mat-label>
-        <input
-          matInput
-          formControlName="fourthCtrl"
-          placeholder="Ex. 12345678"
-          required
-        />
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <!-- #endregion -->
-
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button type="button" (click)="onSubmit()" >Submit</button>
-    </div>
-  </mat-step>
-</mat-stepper>
+    </mat-step>
+  </mat-stepper>
 </mat-dialog-content>
