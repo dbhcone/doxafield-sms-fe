@@ -1,11 +1,13 @@
-<ng-container [ngSwitch]="stepperOrientation | async">
+<h2 mat-dialog-title>SAVE ADMISSION DETAILS <span mat-dialog-close>&times;</span></h2>
+<mat-dialog-content>
+<!-- <ng-container [ngSwitch]="stepperOrientation | async">
   <div *ngSwitchCase="'horizontal'">
     Make your screen smaller to see a vertical stepper
   </div>
   <div *ngSwitchCase="'vertical'">
     Make your screen larger to see a horizontal stepper
   </div>
-</ng-container>
+</ng-container> -->
 
 <mat-stepper
   class="example-stepper"
@@ -55,14 +57,19 @@
             <mat-radio-button id="female" value="F">Female</mat-radio-button>
           </mat-radio-group>
 
-          <mat-form-field>
-            <mat-label>Date of birth</mat-label>
+          <mat-form-field class="" appearance="outline">
+            <mat-label>Date of Birth</mat-label>
             <input
-              type="date"
               matInput
-              placeholder="Date of birth"
               formControlName="dob"
+              [matDatepicker]="dobPicker"
+              placeholder="mm-dd-yyyy"
             />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="dobPicker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker touchUi #dobPicker></mat-datepicker>
           </mat-form-field>
 
           <hr />
@@ -88,12 +95,14 @@
 
         </div>
         <div class="col-md-4">
-          <label>Upload profile photo</label>
-          <input type="file" (change)="onFileSelected($event)" />
+          <label>Upload pupil's passport-size photo</label>
+          <input type="file" (change)="onFileSelected($event)" style="display: none;" #passportphoto />
+          <button mat-raised-button color="warn" type="button" (click)="passportphoto.click()"><mat-icon matPrefix>camera</mat-icon> Upload photo</button>
           <img
             *ngIf="imageSrc"
             [src]="imageSrc"
             style="height: 200px; width: 200px"
+            class="thumbnail"
           />
         </div>
       </div>
@@ -177,3 +186,4 @@
     </div>
   </mat-step>
 </mat-stepper>
+</mat-dialog-content>

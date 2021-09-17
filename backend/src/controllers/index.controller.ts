@@ -16,7 +16,7 @@ const ContactUs = async (req: Request, res: Response) => {
         code: 201,
         data: enquiry,
       });
-  } catch (error) {
+  } catch (error: any) {
     return res
       .status(404)
       .json({ message: error.message, code: 404, status: 'error' });

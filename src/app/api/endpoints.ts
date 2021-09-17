@@ -1,8 +1,33 @@
 const Auth = {
-  adminLogin: '/admin/login',
-  studentLogin: '/student/login',
-  staffLogin: '/staff/login',
-  createAdmin: '/admin/create',
+  studentlogin: '/auth/login/student',
+  stafflogin: '/auth/login/staff',
+  adminlogin: '/auth/login/admin',
+  signup: '/auth/signup',
+  activate: '/auth/activate-account',
 };
 
-export { Auth };
+const Academics = {
+  addCalendar: '/academics/calendar',
+  updateCalendar: '/academics/calendar',
+  allCalendars: '/academics/calendars',
+
+  addClass: '/academics/class',
+  updateClass: '/academics/class',
+  allClasses: '/academics/classes',
+
+  addSubject: '/academics/subject',
+  updateSubject: '/academics/subject',
+  allSubjects: '/academics/subjects'
+}
+
+const General = {
+  contactus: '/contactus',
+};
+
+const Events = {
+  create: '/events/create-event',
+  all: '/events',
+  deleteOne: '/events/delete',
+};
+
+export { Auth, General, Events, Academics };

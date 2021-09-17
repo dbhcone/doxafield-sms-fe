@@ -110,13 +110,13 @@ const Signup = async (req: Request, res: Response) => {
           status: 'error',
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log('User Validation error', error.message);
       return res
         .status(404)
         .send({ code: 404, status: 'error', message: error.message });
     }
-  } catch (error) {
+  } catch (error: any) {
     console.log('Account Validation error', error.message);
     return res
       .status(404)
@@ -162,7 +162,7 @@ const Login = async (req: Request, res: Response) => {
     return res
       .status(200)
       .json({ message: 'Login successful!', token, code: 200, status: 'ok' });
-  } catch (error) {
+  } catch (error: any) {
     console.log('logging in', error.message);
     return res
       .status(404)
@@ -174,7 +174,7 @@ const UsersList = async (req: Request, res: Response) => {
   try {
     let data = await Users.find({});
     return res.status(200).json({ message: '', status: 'ok', code: 200, data });
-  } catch (error) {
+  } catch (error: any) {
     console.log('Error fetching users', error.message);
     return res.status(404).send({
       status: 'error',
@@ -193,7 +193,7 @@ const MembersList = async (req: Request, res: Response) => {
       status: 'ok',
       data,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log('Error fetching members list', error.message);
     return res
       .status(404)
@@ -241,7 +241,7 @@ const DeleteUser = async (req: Request, res: Response) => {
         message: 'User account does not exist',
       });
     }
-  } catch (error) {
+  } catch (error: any) {
     return res
       .status(404)
       .json({ status: 'error', message: error.message, code: 404 });
@@ -276,7 +276,7 @@ const UpdateMember = async (req: Request, res: Response) => {
         code: 404,
       });
     }
-  } catch (error) {
+  } catch (error: any) {
     return res
       .status(404)
       .json({ message: error.message, code: 404, status: 'error' });
@@ -303,7 +303,7 @@ const MembersStats = async (req: Request, res: Response) => {
       code: 200,
       data: { males, females, total, occupations },
     });
-  } catch (error) {
+  } catch (error: any) {
     return res
       .status(404)
       .json({ message: error.message, status: 'error', code: 404 });
@@ -361,7 +361,7 @@ const ActivateAccount = async (req: Request, res: Response) => {
         .status(404)
         .json({ message: decoded.message, status: 'error', code: 404 });
     }
-  } catch (error) {
+  } catch (error: any) {
     return res
       .status(404)
       .json({ message: error.message, status: 'error', code: 404 });

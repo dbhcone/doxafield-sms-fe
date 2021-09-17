@@ -50,56 +50,90 @@ export class LoginComponent implements OnInit {
 
   async onSubmit() {
     console.log('submitting form with ', this.loginForm.value);
-    let { username, password, email } = this.loginForm.value;
+    let { username, password, email, staffId } = this.loginForm.value;
     switch (this.type?.value) {
       case 'admin':
-        this.auth.adminLogin({ username, password, email }).subscribe(
-          async (resp: any) => {
-            if (!resp.error) {
-              console.log(resp);
-              Swal.fire({
-                title: 'Success',
-                titleText: resp.message,
-                icon: 'success',
-              }).then((res) => {
-                this.router.navigate(['home']);
-              });
-            }
-          },
-          (err: HttpErrorResponse) => {
-            Swal.fire({
-              title: 'Login Error',
-              titleText: err.error.error.message,
-              icon: 'error',
-            });
-          }
-        );
+        this.adminLogin(username, password, email);
         break;
       case 'staff':
-        this.auth.staffLogin(this.loginForm.value).subscribe((resp: any) => {
-          // REDIRECT HERE
-        },
-        (err: HttpErrorResponse) => {
-          Swal.fire({
-            title: 'Login Error',
-            titleText: err.error.error.message,
-            icon: 'error',
-          });
-        });
+        this.staffLogin(username, password, staffId);
         break;
       default:
-        this.auth.studentLogin(this.loginForm.value).subscribe((resp: any) => {
-          // REDIRECT HERE
-        },
-        (err: HttpErrorResponse) => {
-          Swal.fire({
-            title: 'Login Error',
-            titleText: err.error.error.message,
-            icon: 'error',
-          });
-        });
+        this.studentLogin(username, password);
         break;
     }
+  }
+
+  adminLogin (username: string, password: string, email: string) {
+    this.auth.adminLogin({ username, password, email }).subscribe(
+      async (resp: any) => {
+        if (!resp.error) {
+          console.log(resp);
+          Swal.fire({
+            title: 'Success',
+            titleText: resp.message,
+            icon: 'success',
+          }).then((res) => {
+            this.router.navigate(['home']);
+          });
+        }
+      },
+      (err: HttpErrorResponse) => {
+        Swal.fire({
+          title: 'Login Error',
+          titleText: err.error.message,
+          icon: 'error',
+        });
+      }
+    );
+  }
+
+  staffLogin (username: string, password: string, staffId: string) {
+    this.auth.staffLogin({ username, password, staffId }).subscribe(
+      async (resp: any) => {
+        if (!resp.error) {
+          console.log(resp);
+          Swal.fire({
+            title: 'Success',
+            titleText: resp.message,
+            icon: 'success',
+          }).then((res) => {
+            this.router.navigate(['home']);
+          });
+        }
+      },
+      (err: HttpErrorResponse) => {
+        Swal.fire({
+          title: 'Login Error',
+          titleText: err.error.message,
+          icon: 'error',
+        });
+      }
+    );
+  }
+
+  studentLogin (username: string, password: string) {
+    this.auth.studentLogin({ username, password }).subscribe(
+      async (resp: any) => {
+        if (!resp.error) {
+          console.log(resp);
+          Swal.fire({
+            title: 'Success',
+            titleText: resp.message,
+            icon: 'success',
+          }).then((res) => {
+            this.router.navigate(['home']);
+          });
+        }
+      },
+      (err: HttpErrorResponse) => {
+        Swal.fire({
+          title: 'Login Error',
+          titleText: err.error.message,
+          icon: 'error',
+        });
+      }
+    );
   }
 
   removeEmailElement() {

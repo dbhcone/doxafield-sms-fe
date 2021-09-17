@@ -64,6 +64,12 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { CommunicationsComponent } from './components/home/communications/communications.component';
 import { UsersComponent } from './components/admin/users/users.component';
 import { AssessmentComponent } from './components/home/assessment/assessment.component';
+import { CalendarComponent } from './components/home/academics/calendar/calendar.component';
+import { ClassComponent } from './components/home/academics/class/class.component';
+import { SubjectComponent } from './components/home/academics/subject/subject.component';
+import { CalendarformComponent } from './components/home/academics/calendar/calendarform.component';
+import { ClassformComponent } from './components/home/academics/class/classform.component';
+import { SubjectformComponent } from './components/home/academics/subject/subjectform.component';
 // Material End
 // Angular Material Modules End
 
@@ -86,6 +92,12 @@ import { AssessmentComponent } from './components/home/assessment/assessment.com
     CommunicationsComponent,
     UsersComponent,
     AssessmentComponent,
+    CalendarComponent,
+    ClassComponent,
+    SubjectComponent,
+    CalendarformComponent,
+    ClassformComponent,
+    SubjectformComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [

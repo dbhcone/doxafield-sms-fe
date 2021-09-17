@@ -1,5 +1,5 @@
 {
-    "CONN_STR_LOC": "mongodb://localhost:27017/doxafield-sms",
+    "CONNSTR_LOC": "mongodb://localhost:27017/doxafield-sms",
     "CONNSTR": "mongodb+srv://doxafield-sms-user:b2lTAJ4iIPzR6121@cluster-doxafield-sms.zay9n.mongodb.net/doxafield-sms?retryWrites=true&w=majority",
     "JWT_PRIVATE_KEY": "TheQuickBrownFoxJumpedOverTheLazyDogs",
     "MAILER_EMAIL": "dev.kiki@outlook.com",

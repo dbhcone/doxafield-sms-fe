@@ -6,9 +6,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import path from 'path';
 import { indexRouter } from './routes/index';
-import { authRouter } from './routes/auth';
-import { userRouter } from './routes/user';
-import { eventRouter } from './routes/event';
+import { academicsRouter } from './routes/academics';
 
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -22,13 +20,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api', indexRouter);
-// #region ================== AUTH ROUTES
-app.use('/api/auth', authRouter);
-//  #endregion
+app.use('/api/academics', academicsRouter);
 
-app.use('/api/user', userRouter);
-
-app.use('/api/events', eventRouter);
 
 // serve only the static files from the dist directory
 app.use(express.static(path.join(__dirname, '../public/fe')));
@@ -89,7 +82,7 @@ app.use(
 // DB Connection
 try {
   mongoose.connect(
-    config.get('CONN_STR_LOC'),
+    config.get('CONNSTR'),
     {
       
     },
@@ -101,7 +94,7 @@ try {
       }
     }
   );
-} catch (error) {
+} catch (error: any) {
   console.log('Error', error);
 }
 

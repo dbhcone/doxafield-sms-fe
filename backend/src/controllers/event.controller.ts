@@ -50,7 +50,7 @@ const CreateEvent = async (req: Request, res: Response, next: NextFunction) => {
         .status(404)
         .json({ message: 'Event creation failed', code: 404, status: 'error' });
     }
-  } catch (error) {
+  } catch (error: any) {
     return res
       .status(404)
       .json({ message: error.message, code: 404, status: 'error' });
@@ -62,7 +62,7 @@ const FetchAllEvents = async (req: Request, res: Response) => {
     const events = await Events.find().sort({ title: 'asc' });
     const uploadPath = `${config.get('APPROOT')}/public/uploads`;
     return res.status(200).json({message: 'Events fetched successfully', status: 'ok', code: 200, data: {count: events.length, events, uploadPath}})
-  } catch (error) {
+  } catch (error: any) {
     return res
       .status(404)
       .json({ message: error.message, code: 404, status: 'error' });
@@ -83,7 +83,7 @@ const DeleteEvent = async (req: Request, res: Response) => {
 
     return res.sendStatus(200);
 
-  } catch (error) {
+  } catch (error: any) {
     return res.status(404).json({message: error.message, code: 404, status: 'error'})
   }
 }

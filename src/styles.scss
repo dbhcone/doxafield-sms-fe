@@ -16,3 +16,38 @@ body {
 .mat-ink-bar {
   height: 5px;
 }
+
+th{
+  background-color: ghostwhite;
+}
+.mat-row:nth-child(even){
+    background-color: ghostwhite;
+}
+
+.mat-row:nth-child(odd){
+    background-color:#ffffff;
+}
+
+td.mat-cell {
+  /* row padding */
+  padding: 16px 0;
+  /* row border */
+  // border-bottom: 1px solid #ffa600;
+  // border-top: 1px solid #ffa600;
+  border: 1px solid #ffa600;
+ }
+ 
+ td.mat-cell:first-child {
+   /* row border */
+   border-left: 1px solid #ffa600;
+ }
+ 
+ td.mat-cell:last-child {
+   /* row border */
+   border-right: 1px solid #ffa600;
+ }
+ 
+ table {
+   /* row spacing / margin */
+   border-spacing: 0 8px !important;
+ } 

@@ -17,7 +17,7 @@ const decodeToken = (
 
     return { message: '', status: 'ok', code: 200, data: verification };
     // we have verified now let us decode
-  } catch (error) {
+  } catch (error: any) {
     return { message: error.message, status: 'error', code: 404, data: null };
   }
 };

@@ -14,6 +14,7 @@ import { MainLayoutComponent } from './components/shared/main-layout/main-layout
 import { AssessmentComponent } from './components/home/assessment/assessment.component';
 import { CommunicationsComponent } from './components/home/communications/communications.component';
 import { UsersComponent } from './components/admin/users/users.component';
+import { CalendarformComponent } from './components/home/academics/calendar/calendarform.component';
 
 const routes: Routes = [
   // { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -34,7 +35,7 @@ const routes: Routes = [
       { path: 'admissions', component: AdmissionsComponent },
       { path: 'assessment', component: AssessmentComponent },
       { path: 'communications', component: CommunicationsComponent },
-      { path: 'users', component: UsersComponent },
+      { path: 'users', component: UsersComponent }
     ],
   },
   // #endregion

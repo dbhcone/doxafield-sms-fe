@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apibaseurl: "https://doxafield-sms-be.herokuapp.com/api"
+  apiroot: "http://localhost:7400/api"
 };
 
 /*
