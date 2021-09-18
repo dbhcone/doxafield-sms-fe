@@ -5,7 +5,7 @@ const AdmissionSchema: Schema = new Schema(
     personalDetails: {
       surname: { type: String, required: true },
       firstName: { type: String, required: true },
-      OtherNames: { type: String },
+      otherNames: { type: String },
       gender: { type: String, required: true },
       dob: { type: Date },
       photourl: { type: String },

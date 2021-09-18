@@ -59,7 +59,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { StoreModule } from '@ngrx/store';
 import { navReducer } from './store/reducers/nav.reducers';
 import { AdmissionsComponent } from './components/home/admissions/admissions.component';
-import { AddAdmissionComponent } from './components/home/admissions/add-admission.component';
+import { AdmissionformComponent } from './components/home/admissions/admissionform.component';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { CommunicationsComponent } from './components/home/communications/communications.component';
 import { UsersComponent } from './components/admin/users/users.component';
@@ -88,7 +88,7 @@ import { SubjectformComponent } from './components/home/academics/subject/subjec
     EmployeesComponent,
     PupilsComponent,
     AdmissionsComponent,
-    AddAdmissionComponent,
+    AdmissionformComponent,
     CommunicationsComponent,
     UsersComponent,
     AssessmentComponent,

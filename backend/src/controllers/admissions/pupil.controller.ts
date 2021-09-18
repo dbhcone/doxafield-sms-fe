@@ -1,3 +1,4 @@
+import config from 'config';
 import { Request, Response } from 'express';
 import Admission from '../../models/admissions/pupil.admission.model';
 import { admissionValidation } from '../../validators/admissions.validations';
@@ -36,11 +37,12 @@ const create = async (req: Request, res: Response) => {
 const read = async (_req: Request, res: Response) => {
   try {
     const admissions = await Admission.find();
+    const uploadPath = `${config.get('UPLOADPATH')}`;
     return res.status(200).json({
       status: 'ok',
       message: 'admissions fetched successfully',
       code: 200,
-      data: admissions,
+      data: {count: admissions.length, admissions, uploadPath},
     });
   } catch (error: any) {
     return res

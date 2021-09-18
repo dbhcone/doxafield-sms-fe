@@ -13,7 +13,7 @@ export interface IAdmission extends Document {
 export interface IPersonalDetails {
     surname: string;
     firstName: string;
-    OtherNames?: string;
+    otherNames?: string;
     gender: string;
     dob?: Date;
     photourl?: string;
