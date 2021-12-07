@@ -3,22 +3,16 @@
 </h2>
 
 <ng-container [ngSwitch]="stepperOrientation | async">
-  <!-- <div *ngSwitchCase="'horizontal'">
-    Make your screen smaller to see a vertical stepper
-  </div>
-  <div *ngSwitchCase="'vertical'">
-    Make your screen larger to see a horizontal stepper
-  </div> -->
 </ng-container>
-
+<mat-dialog-content class="mat-typography">
 <mat-stepper
   class="example-stepper"
   [orientation]="(stepperOrientation | async)!"
 >
   <!-- #region Personal Information -->
-  <mat-step [stepControl]="employeeForm" label="Personal Details">
-    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-      <mat-dialog-content class="mat-typography">
+  <mat-step [stepControl]="personalDetailsFormGroup" label="Personal Details">
+    <form [formGroup]="personalDetailsFormGroup">
+      
         <mat-form-field appearance="outline">
           <mat-label>Surname</mat-label>
           <input
@@ -62,8 +56,8 @@
           aria-label="Select an option for gender"
         >
           <mat-label>Gender</mat-label>
-          <mat-radio-button id="male" value="male">Male</mat-radio-button>
-          <mat-radio-button id="female" value="female">Female</mat-radio-button>
+          <mat-radio-button id="male" value="M">Male</mat-radio-button>
+          <mat-radio-button id="female" value="F">Female</mat-radio-button>
         </mat-radio-group>
     
         <mat-form-field appearance="outline">
@@ -89,6 +83,7 @@
             formControlName="mobileNumber"
             required
             maxlength="10"
+            minlength="10"
           />
           <mat-hint>Example: 0244024123</mat-hint>
         </mat-form-field>
@@ -135,308 +130,139 @@
             </mat-select>
           </mat-form-field>
     
-      </mat-dialog-content>
-    
-      <mat-dialog-actions align="end">
-        <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-        <button
-          mat-raised-button
-          color="primary"
-          [mat-dialog-close]="employeeForm.value"
-          cdkFocusInitial
-          type="submit"
-        >
-          Save
-        </button>
-      </mat-dialog-actions>
+     
     </form>
   </mat-step>
   <!-- #endregion -->
-  <!-- #region Address & Background Details -->
-  <mat-step
-    [stepControl]="employeeForm"
-    label="Address &amp; Background Details"
-  >
-  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-    <mat-dialog-content class="mat-typography">
-      <mat-form-field appearance="outline">
-        <mat-label>Surname</mat-label>
-        <input
-          matInput
-          type="text"
-          name="surname"
-          id="surname"
-          placeholder="enter surname here"
-          formControlName="surname"
-          required
-        />
-      </mat-form-field>
   
-      <mat-form-field appearance="outline">
-        <mat-label>First Name</mat-label>
-        <input
-          matInput
-          type="text"
-          name="firstName"
-          id="firstName"
-          placeholder="enter first name here"
-          formControlName="firstName"
-          required
-        />
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Other Names</mat-label>
-        <input
-          matInput
-          type="text"
-          name="otherNames"
-          id="otherNames"
-          placeholder="enter other names here"
-          formControlName="otherNames"
-        />
-      </mat-form-field>
-  
-      <mat-radio-group
-        formControlName="gender"
-        aria-label="Select an option for gender"
-      >
-        <mat-label>Gender</mat-label>
-        <mat-radio-button id="male" value="male">Male</mat-radio-button>
-        <mat-radio-button id="female" value="female">Female</mat-radio-button>
-      </mat-radio-group>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input
-          matInput
-          type="email"
-          name="email"
-          id="email"
-          placeholder="enter email here"
-          formControlName="email"
-        />
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Mobile Number</mat-label>
-        <input
-          matInput
-          type="text"
-          name="mobileNumber"
-          id="mobileNumber"
-          placeholder="enter mobile number here"
-          formControlName="mobileNumber"
-          required
-          maxlength="10"
-        />
-        <mat-hint>Example: 0244024123</mat-hint>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>GH Post Address / Code</mat-label>
-        <input
-          matInput
-          type="text"
-          name="ghPostAddress"
-          id="ghPostAddress"
-          placeholder="enter GH Post address here"
-          formControlName="ghPostAddress"
-        />
-        <mat-hint> Example: GH-XXXXX-XX </mat-hint>
-      </mat-form-field>
-  
-      <mat-form-field class="" appearance="outline">
-        <mat-label>Choose date of birth</mat-label>
-        <input
-          matInput
-          formControlName="dob"
-          [matDatepicker]="dobPicker"
-          placeholder="mm-dd-yyyy"
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="dobPicker"
-        ></mat-datepicker-toggle>
-        <mat-datepicker  #dobPicker ></mat-datepicker>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-          <mat-label>Select a role</mat-label>
-          <mat-select
-            (selectionChange)="onRoleChange($event)"
-            formControlName="role"
-          >
-            <mat-option
-              *ngFor="let role of roles"
-              [value]="role.id"
-              >{{ role.name }}</mat-option
-            >
-          </mat-select>
+    <!-- #region Address & Background Details -->
+    <mat-step
+      [stepControl]="addressAndBackgroundFormGroup"
+      label="Address &amp; Background Details"
+    >
+      <form [formGroup]="addressAndBackgroundFormGroup">
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input
+            matInput
+            formControlName="address"
+            placeholder="Ex. 1 Main St, New York, NY"
+            required
+          />
         </mat-form-field>
-  
-    </mat-dialog-content>
-  
-    <mat-dialog-actions align="end">
-      <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-      <button
-        mat-raised-button
-        color="primary"
-        [mat-dialog-close]="employeeForm.value"
-        cdkFocusInitial
-        type="submit"
-      >
-        Save
-      </button>
-    </mat-dialog-actions>
-  </form>
-  </mat-step>
-  <!-- #endregion -->
 
-  <!--#region Guardian Details -->
-  <mat-step [stepControl]="employeeForm" label="Bank Details">
-    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <mat-label>GH Post Code</mat-label>
+          <input
+            matInput
+            formControlName="ghPostCode"
+            placeholder="GH Post Code"
+          />
+          <mat-hint>Example: NAM-8888-ME</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Tribe</mat-label>
+          <input matInput formControlName="tribe" placeholder="Tribe" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Religion</mat-label>
+          <input matInput formControlName="religion" placeholder="Religion" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Home Town</mat-label>
+          <input matInput formControlName="hometown" placeholder="home town" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Nationality</mat-label>
+          <input
+            matInput
+            formControlName="nationality"
+            placeholder="Nationality"
+          />
+        </mat-form-field>
+
+        <div>
+          <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- #endregion -->
+
+  <!--#region Bank Details -->
+  <mat-step [stepControl]="bankDetailsFormGroup" label="Bank Details">
+    <form [formGroup]="bankDetailsFormGroup">
       <mat-dialog-content class="mat-typography">
         <mat-form-field appearance="outline">
-          <mat-label>Surname</mat-label>
+          <mat-label>Name of Bank</mat-label>
           <input
             matInput
             type="text"
-            name="surname"
-            id="surname"
-            placeholder="enter surname here"
-            formControlName="surname"
+            name="bankName"
+            id="bankName"
+            placeholder="enter bank name here"
+            formControlName="bankName"
             required
           />
         </mat-form-field>
     
         <mat-form-field appearance="outline">
-          <mat-label>First Name</mat-label>
+          <mat-label>Account Holder's Name</mat-label>
           <input
             matInput
             type="text"
-            name="firstName"
-            id="firstName"
+            name="accountName"
+            id="accountName"
             placeholder="enter first name here"
-            formControlName="firstName"
+            formControlName="accountName"
             required
           />
         </mat-form-field>
     
         <mat-form-field appearance="outline">
-          <mat-label>Other Names</mat-label>
+          <mat-label>Account Type</mat-label>
           <input
             matInput
             type="text"
-            name="otherNames"
-            id="otherNames"
+            name="accountType"
+            id="accountType"
             placeholder="enter other names here"
-            formControlName="otherNames"
-          />
-        </mat-form-field>
-    
-        <mat-radio-group
-          formControlName="gender"
-          aria-label="Select an option for gender"
-        >
-          <mat-label>Gender</mat-label>
-          <mat-radio-button id="male" value="male">Male</mat-radio-button>
-          <mat-radio-button id="female" value="female">Female</mat-radio-button>
-        </mat-radio-group>
-    
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input
-            matInput
-            type="email"
-            name="email"
-            id="email"
-            placeholder="enter email here"
-            formControlName="email"
+            formControlName="accountType"
           />
         </mat-form-field>
     
         <mat-form-field appearance="outline">
-          <mat-label>Mobile Number</mat-label>
+          <mat-label>Account Type</mat-label>
           <input
             matInput
             type="text"
-            name="mobileNumber"
-            id="mobileNumber"
-            placeholder="enter mobile number here"
-            formControlName="mobileNumber"
-            required
-            maxlength="10"
+            name="accountType"
+            id="accountType"
+            placeholder="enter account type here"
+            formControlName="accountType"
           />
-          <mat-hint>Example: 0244024123</mat-hint>
         </mat-form-field>
-    
-        <mat-form-field appearance="outline">
-          <mat-label>GH Post Address / Code</mat-label>
-          <input
-            matInput
-            type="text"
-            name="ghPostAddress"
-            id="ghPostAddress"
-            placeholder="enter GH Post address here"
-            formControlName="ghPostAddress"
-          />
-          <mat-hint> Example: GH-XXXXX-XX </mat-hint>
-        </mat-form-field>
-    
-        <mat-form-field class="" appearance="outline">
-          <mat-label>Choose date of birth</mat-label>
-          <input
-            matInput
-            formControlName="dob"
-            [matDatepicker]="dobPicker"
-            placeholder="mm-dd-yyyy"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="dobPicker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker  #dobPicker ></mat-datepicker>
-        </mat-form-field>
-    
-        <mat-form-field appearance="outline">
-            <mat-label>Select a role</mat-label>
-            <mat-select
-              (selectionChange)="onRoleChange($event)"
-              formControlName="role"
-            >
-              <mat-option
-                *ngFor="let role of roles"
-                [value]="role.id"
-                >{{ role.name }}</mat-option
-              >
-            </mat-select>
-          </mat-form-field>
     
       </mat-dialog-content>
-    
-      <mat-dialog-actions align="end">
-        <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-        <button
-          mat-raised-button
-          color="primary"
-          [mat-dialog-close]="employeeForm.value"
-          cdkFocusInitial
-          type="submit"
-        >
-          Save
-        </button>
-      </mat-dialog-actions>
     </form>
   </mat-step>
   <!-- #endregion -->
-
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button type="button" (click)="onSubmit()" >Submit</button>
-    </div>
-  </mat-step>
 </mat-stepper>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    cdkFocusInitial
+    type="submit"
+    (click)="onSubmit()"
+  >
+    {{(submitting ? 'Please wait...' : 'Save') | uppercase}}
+  </button>
+</mat-dialog-actions>

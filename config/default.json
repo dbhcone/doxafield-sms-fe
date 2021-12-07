@@ -6,5 +6,6 @@
     "MAILER_PWD": "Hell1sRe@L.dev.outlook",
     "CALLBACK_URL": "http://localhost:7400",
     "BE_URL": "https://hb-events.herokuapp.com",
-    "APPROOT": "http://localhost:7400"
+    "APPROOT": "https://hb-events.herokuapp.com",
+    "UPLOADPATH": "https://hb-events.herokuapp.com/public/uploads"
 }

@@ -8,7 +8,7 @@ const AdmissionSchema: Schema = new Schema(
       otherNames: { type: String },
       gender: { type: String, required: true },
       dob: { type: Date },
-      photourl: { type: String },
+      photograph: { type: Object },
     },
     addressAndBackground: {
       address: { type: String },

@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import path from 'path';
 import { indexRouter } from './routes/index';
 import { academicsRouter } from './routes/academics';
+import { admissionsRouter } from './routes/admissions';
 
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -21,6 +22,7 @@ app.use(cookieParser());
 
 app.use('/api', indexRouter);
 app.use('/api/academics', academicsRouter);
+app.use('/api', admissionsRouter);
 
 
 // serve only the static files from the dist directory

@@ -29,11 +29,11 @@
     >
     <!-- Image Column -->
     <ng-container matColumnDef="thumbnail">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Flyer</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Profile Photo</th>
       <td mat-cell *matCellDef="let row">
         <img mat-card-image
-          src="{{ displayThumbnail(row.personalDetails.photourl) }}"
-          alt="flyer of {{ row.personalDetails.speaker }}"
+          src="{{ displayThumbnail(row.personalDetails.photograph?.filename) }}"
+          alt="photo of {{ row.personalDetails.firstName }}"
           srcset=""
           class="thumbnail"
         />

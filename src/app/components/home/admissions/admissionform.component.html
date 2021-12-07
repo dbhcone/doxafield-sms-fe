@@ -101,7 +101,7 @@
         </div>
 
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -127,23 +127,24 @@
           <input
             matInput
             formControlName="ghPostCode"
-            placeholder="NAM-888-ME"
+            placeholder="GH Post Code"
           />
+          <mat-hint>Example: NAM-8888-ME</mat-hint>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Tribe</mat-label>
-          <input matInput formControlName="tribe" placeholder="NAM-888-ME" />
+          <input matInput formControlName="tribe" placeholder="Tribe" />
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Religion</mat-label>
-          <input matInput formControlName="religion" placeholder="religion" />
+          <input matInput formControlName="religion" placeholder="Religion" />
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Home Town</mat-label>
-          <input matInput formControlName="hometown" placeholder="hometown" />
+          <input matInput formControlName="hometown" placeholder="home town" />
         </mat-form-field>
 
         <mat-form-field>
@@ -151,13 +152,13 @@
           <input
             matInput
             formControlName="nationality"
-            placeholder="nationality"
+            placeholder="Nationality"
           />
         </mat-form-field>
 
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -181,8 +182,9 @@
           <input
             matInput
             formControlName="reasonForLeaving"
-            placeholder="reasonForLeaving"
+            placeholder="Reason for leaving"
           />
+          <mat-hint>Example: Relocation, transfer, </mat-hint>
         </mat-form-field>
 
         <mat-form-field>
@@ -190,13 +192,13 @@
           <input
             matInput
             formControlName="yearOfLeaving"
-            placeholder="year Of Leaving"
+            placeholder="Year of leaving"
           />
         </mat-form-field>
 
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -221,7 +223,7 @@
           <input
             type="text"
             matInput
-            placeholder="sickle cell status"
+            placeholder="Sickle cell status"
             formControlName="sickleCellStatus"
           />
         </mat-form-field>
@@ -241,14 +243,14 @@
           <input
             type="text"
             matInput
-            placeholder="special comments"
+            placeholder="Special comments"
             formControlName="specialComments"
           />
         </mat-form-field>
 
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -259,8 +261,18 @@
       <ng-template matStepLabel>Done</ng-template>
       <p>You are now done.</p>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button type="button" (click)="onSubmit()">Submit</button>
+        <button mat-raised-button color="accent" matStepperPrevious>
+          Back
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="onSubmit()"
+          [disabled]="!allFieldsValid()"
+        >
+          Submit
+        </button>
       </div>
     </mat-step>
   </mat-stepper>

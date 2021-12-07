@@ -16,7 +16,7 @@ export interface IPersonalDetails {
     otherNames?: string;
     gender: string;
     dob?: Date;
-    photourl?: string;
+    photograph?: Object;
 }
 
 export interface IHealthDetails {

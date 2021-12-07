@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { StepperOrientation } from '@angular/material/stepper';
 import { map } from 'rxjs/operators';
@@ -21,6 +21,7 @@ export class AdmissionformComponent implements OnInit {
   addressAndBackgroundFormGroup!: FormGroup;
   healthDetailsFormGroup!: FormGroup;
   schoolHistoryFormGroup!: FormGroup;
+  photoForm!: FormControl;
 
   constructor(
     private fb: FormBuilder,
@@ -38,36 +39,58 @@ export class AdmissionformComponent implements OnInit {
   prepareForm(data?: any) {
     this.personalDetailsFormGroup = this.fb.group({
       surname: [
-        data?.personalDetails.surname || null,
+        data?.personalDetails?.surname || null,
         Validators.compose([Validators.required, Validators.minLength(3)]),
       ],
       firstName: [
-        data?.personalDetails.firstName || null,
+        data?.personalDetails?.firstName || null,
         Validators.compose([Validators.required, Validators.minLength(3)]),
       ],
-      otherNames: [data?.personalDetails.otherNames || null],
-      dob: [data?.personalDetails.dob || null],
-      gender: [data?.personalDetails.gender || null, Validators.required],
+      otherNames: [data?.personalDetails?.otherNames || null],
+      dob: [data?.personalDetails?.dob || null],
+      gender: [data?.personalDetails?.gender || null, Validators.required],
+      photo: []
     });
     this.addressAndBackgroundFormGroup = this.fb.group({
-      tribe: [data?.addressAndBackground.tribe || null, Validators.required],
-      religion: [data?.addressAndBackground.religion || null, Validators.required],
-      address: [data?.addressAndBackground.address || null, Validators.required],
-      hometown: [data?.addressAndBackground.hometown || null, Validators.required],
-      nationality: [data?.addressAndBackground.nationality || null, Validators.required],
-      ghPostCode: [data?.addressAndBackground.ghPostCode || null, Validators.required],
+      tribe: [data?.addressAndBackground?.tribe || null, Validators.required],
+      religion: [
+        data?.addressAndBackground?.religion || null,
+        Validators.required,
+      ],
+      address: [
+        data?.addressAndBackground?.address || null,
+        Validators.required,
+      ],
+      hometown: [
+        data?.addressAndBackground?.hometown || null,
+        Validators.required,
+      ],
+      nationality: [
+        data?.addressAndBackground?.nationality || null,
+        Validators.required,
+      ],
+      ghPostCode: [
+        data?.addressAndBackground?.ghPostCode || null,
+        Validators.required,
+      ],
     });
     this.schoolHistoryFormGroup = this.fb.group({
-      lastSchoolAttended: [data?.schoolHistory.lastSchoolAttended || null, Validators.required],
-      location: [data?.schoolHistory.location || null, Validators.required],
-      reasonForLeaving: [data?.schoolHistory.reasonForLeaving || null, Validators.required],
-      yearOfLeaving: [data?.schoolHistory.yearOfLeaving || null, Validators.required],
+      lastSchoolAttended: [
+        data?.schoolHistory?.lastSchoolAttended || null,
+      ],
+      location: [data?.schoolHistory?.location || null],
+      reasonForLeaving: [
+        data?.schoolHistory?.reasonForLeaving || null
+      ],
+      yearOfLeaving: [
+        data?.schoolHistory?.yearOfLeaving || null
+      ],
     });
     this.healthDetailsFormGroup = this.fb.group({
-      bloodGroup: [data?.healthDetails.bloodGroup || null],
-      sickleCellStatus: [data?.healthDetails.sickleCellStatus || null],
-      allergies: [data?.healthDetails.allergies || null],
-      specialComments: [data?.healthDetails.specialComments || null],
+      bloodGroup: [data?.healthDetails?.bloodGroup || null],
+      sickleCellStatus: [data?.healthDetails?.sickleCellStatus || null],
+      allergies: [data?.healthDetails?.allergies || null],
+      specialComments: [data?.healthDetails?.specialComments || null],
     });
   }
 
@@ -95,17 +118,23 @@ export class AdmissionformComponent implements OnInit {
   }
 
   onSubmit() {
-    const personalDetails = this.personalDetailsFormGroup.value;
+    const admData = new FormData();
+    const {photo, ...personalDetails} = this.personalDetailsFormGroup.value;
     const addressAndBackground = this.addressAndBackgroundFormGroup.value;
     const schoolHistory = this.schoolHistoryFormGroup.value;
     const healthDetails = this.healthDetailsFormGroup.value;
 
-    const admData = {
-      personalDetails,
-      addressAndBackground,
-      schoolHistory,
-      healthDetails,
-    };
+    // const admData = {
+    //   personalDetails,
+    //   addressAndBackground,
+    //   schoolHistory,
+    //   healthDetails,
+    // };
+    admData.append("photo", photo);
+    admData.append("personalDetails",  JSON.stringify(personalDetails));
+    admData.append("addressAndBackground", JSON.stringify(addressAndBackground));
+    admData.append("schoolHistory", JSON.stringify(schoolHistory));
+    admData.append("healthDetails", JSON.stringify(healthDetails));
 
     const obs = this.data
       ? this.admService.updateAdmission(this.data?._id, admData)
@@ -122,6 +151,15 @@ export class AdmissionformComponent implements OnInit {
           text: `${err.error.message}`,
         });
       }
+    );
+  }
+
+  allFieldsValid() {
+    return (
+      this.personalDetailsFormGroup.valid &&
+      this.addressAndBackgroundFormGroup.valid &&
+      this.healthDetailsFormGroup.valid &&
+      this.schoolHistoryFormGroup.valid
     );
   }
 }

@@ -9,10 +9,12 @@ export class AdmissionsService {
   constructor(private client: Client) { }
 
   addAdmission(admission: any) {
-    return this.client.POST(`${Admissions.addAdmission}`, admission);
+    const headers = {Authorization: `Bearer ${localStorage.getItem('token')}`};
+    return this.client.POST(`${Admissions.addAdmission}`, admission, headers);
   }
   updateAdmission(id: string, admission: any) {
-    return this.client.PATCH(`${Admissions.updateAdmission}`, id, admission);
+    const headers = {Authorization: `Bearer ${localStorage.getItem('token')}`};
+    return this.client.PATCH(`${Admissions.updateAdmission}`, id, admission, headers);
   }
   fetchAllAdmissions() {
     return this.client.GET(`${Admissions.allAdmissions}`);
