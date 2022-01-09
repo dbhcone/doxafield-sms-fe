@@ -24,6 +24,7 @@
         *ngFor="let nav of navs"
         mat-list-item
         [routerLink]="nav.route"
+        routerLinkActive="active-link"
         (click)="updateNavTitle(nav)"
         ><mat-icon>{{ nav.icon }}</mat-icon> {{ nav.name | uppercase }}</a
       >
@@ -57,14 +58,13 @@
     <!-- #region Bottom of side nav -->
     <div class="bottom">
       <mat-nav-list>
-        <a mat-list-item routerLink="settings"
-          ><mat-icon>settings</mat-icon> Settings</a
-        >
-        <mat-divider class="divider"></mat-divider>
-        <a mat-list-item routerLink="users"><mat-icon>group</mat-icon> Users</a>
-        <mat-divider class="divider"></mat-divider>
-        <a mat-list-item routerLink="/logout"
-          ><mat-icon>logout</mat-icon> Logout</a
+        <a
+          *ngFor="let bnav of bottomNavs"
+          mat-list-item
+          [routerLink]="bnav.route"
+          routerLinkActive="active-link"
+          (click)="updateNavTitle(bnav)"
+          ><mat-icon>{{ bnav.icon }}</mat-icon> {{ bnav.name | uppercase }}</a
         >
       </mat-nav-list>
     </div>

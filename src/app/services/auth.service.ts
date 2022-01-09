@@ -78,4 +78,8 @@ export class AuthService implements OnInit {
   get isAdmin() {
     return this.data().role === 'admin';
   }
+
+  fetchAllUsers() {
+    return this.client.GET(`${Auth.allusers}`);
+  }
 }

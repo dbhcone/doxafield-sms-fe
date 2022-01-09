@@ -15,7 +15,9 @@ import { AppState } from 'src/app/store/app.state';
 export class MainLayoutComponent {
   navs: INavigation[] = [];
 
-  navStore: Observable<{title: string}>;
+  bottomNavs: INavigation[] = [];
+
+  navStore: Observable<{ title: string }>;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -24,7 +26,10 @@ export class MainLayoutComponent {
       shareReplay()
     );
   @ViewChild(MatAccordion) accordion?: MatAccordion;
-  constructor(private breakpointObserver: BreakpointObserver, private store: Store<AppState>) {
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private store: Store<AppState>
+  ) {
     this.navs = [
       { name: 'Dashboard', route: 'dashboard', icon: 'dashboard' },
       { name: 'Academics', route: 'academics', icon: 'school' },
@@ -32,14 +37,20 @@ export class MainLayoutComponent {
       { name: 'Pupils', route: 'pupils', icon: 'groups' },
       { name: 'Assessment', route: 'assessment', icon: 'book' },
       { name: 'Finance', route: 'finance', icon: 'attach_money' },
-      { name: 'Hr', route: 'hr', icon: 'group', alt: "Human Resource" },
+      { name: 'Hr', route: 'hr', icon: 'group', alt: 'Human Resource' },
       { name: 'Communications', route: 'communications', icon: 'chat' },
     ];
-    this.navStore = store.select("obj");
+
+    this.bottomNavs = [
+      { name: 'Settings', route: 'settings', icon: 'settings' },
+      { name: 'Users', route: 'users', icon: 'group' },
+      { name: 'Logout', route: '/logout', icon: 'logout' },
+    ];
+    this.navStore = store.select('obj');
   }
 
-  updateNavTitle (nav: INavigation) {
-    this.store.dispatch(updateTitle({ title: nav.alt || nav.name}));
+  updateNavTitle(nav: INavigation) {
+    this.store.dispatch(updateTitle({ title: nav.alt || nav.name }));
   }
 }
 

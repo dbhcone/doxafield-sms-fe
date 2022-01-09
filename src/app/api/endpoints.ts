@@ -2,8 +2,9 @@ const Auth = {
   studentlogin: '/auth/login/student',
   stafflogin: '/auth/login/staff',
   adminlogin: '/auth/login/admin',
-  signup: '/auth/signup',
+  signup: '/auth/create-account',
   activate: '/auth/activate-account',
+  allusers: '/auth/all-users',
 };
 
 const Academics = {
@@ -17,14 +18,14 @@ const Academics = {
 
   addSubject: '/academics/subject',
   updateSubject: '/academics/subject',
-  allSubjects: '/academics/subjects'
-}
+  allSubjects: '/academics/subjects',
+};
 
 const Admissions = {
   addAdmission: '/admission',
   updateAdmission: '/admission',
   allAdmissions: '/admissions',
-}
+};
 
 const General = {
   contactus: '/contactus',

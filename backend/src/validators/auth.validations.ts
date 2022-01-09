@@ -26,8 +26,8 @@ const userValidation: ObjectSchema<{
 }> = Joi.object({
   username: Joi.string().required().min(8),
   password: Joi.string().required(),
-  email: Joi.string().email().required(),
-  role: Joi.string().default('subscriber'),
+  email: Joi.string().email(),
+  role: Joi.string(),
 });
 
 const accountValidation: ObjectSchema<{
